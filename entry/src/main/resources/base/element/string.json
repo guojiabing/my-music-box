@@ -135,6 +135,10 @@
     {
       "name": "reason_background",
       "value": "keep background running"
+    },
+    {
+      "name": "userinfo",
+      "value": "userinfo"
     }
   ]
 }

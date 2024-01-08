@@ -3,6 +3,7 @@ import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
+import { login } from '../api/login'
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -17,6 +18,17 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    const userinfo = AppStorage.Get('userinfo')
+
+    if (!userinfo) {
+      hilog.info(111, 'error', '来了')
+      login()
+        .then(ret => {
+          hilog.info(111, 'login', JSON.stringify(ret))
+          AppStorage.SetAndProp('userinfo', ret)
+        })
+    }
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {

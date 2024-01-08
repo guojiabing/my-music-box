@@ -135,6 +135,10 @@
     {
       "name": "reason_background",
       "value": "保持在后台运行"
+    },
+    {
+      "name": "userinfo",
+      "value": "userinfo"
     }
   ]
 }
